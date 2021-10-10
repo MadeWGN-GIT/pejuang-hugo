@@ -1,0 +1,28 @@
+<div class="card mb-5">
+                            <div class="card-header">
+                              <h4>🔥 Artikel Terbaru</h4>
+                            </div>
+                            <div class="list-group list-group-flush">
+                                {{ range first 5 (where .Site.RegularPages "Section" "post").ByDate.Reverse }}
+                                <a href="{{ .RelPermalink }}" class="list-group-item text-primary text-decoration-none">
+                                  <div class="row">
+                                    <div class="col-8">
+                                      <h6>{{ .Title }}</h6>
+                                      <small class="text-muted">
+                                      {{ .Date.Format "2 Jan 2006" }}.
+                                      {{ $readCounter := math.Round (div (countwords .Content) 220.0) }}
+                                      {{ if lt $readCounter 1 }}
+                                      Baca 1 menit.
+                                      {{ else }}
+                                      Baca {{ $readCounter }} menit.
+                                      {{ end }}
+                                      </small>
+                                    </div>
+                                    <div class="col-4">
+                                      <img class="img-fluid" src="/img/{{ .Params.featured_image }}" loading="lazy" alt="" srcset="">
+                                    </div>
+                                  </div>
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
